@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* ============================================
+   EnergyOS Design Tokens
+   ============================================ */
+
+:root {
+  /* Brand colors — OKLCH for perceptual uniformity */
+  --brand-primary: oklch(0.55 0.18 250);
+  --brand-secondary: oklch(0.72 0.16 145);
+  --brand-accent: oklch(0.78 0.15 85);
+  --brand-black: oklch(0.13 0.02 250);
+  --brand-white: oklch(0.99 0 0);
+
+  /* Semantic tokens (shadcn/ui compatible) */
+  --background: oklch(0.99 0 0);
+  --foreground: oklch(0.13 0.02 250);
+  --primary: var(--brand-primary);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.96 0.01 250);
+  --secondary-foreground: oklch(0.13 0.02 250);
+  --muted: oklch(0.96 0.01 250);
+  --muted-foreground: oklch(0.55 0.02 250);
+  --accent: oklch(0.95 0.02 250);
+  --accent-foreground: oklch(0.13 0.02 250);
+  --destructive: oklch(0.55 0.22 29);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.88 0.02 250);
+  --input: oklch(0.88 0.02 250);
+  --ring: var(--brand-primary);
+  --radius: 0.5rem;
+
+  /* Sidebar */
+  --sidebar: oklch(0.97 0.005 250);
+  --sidebar-foreground: oklch(0.13 0.02 250);
+  --sidebar-primary: var(--brand-primary);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.93 0.01 250);
+  --sidebar-accent-foreground: oklch(0.13 0.02 250);
+  --sidebar-border: oklch(0.88 0.02 250);
+  --sidebar-ring: var(--brand-primary);
+
+  /* Energy domain semantic colors */
+  --color-solar: oklch(0.82 0.18 85);
+  --color-grid-import: oklch(0.60 0.20 25);
+  --color-grid-export: oklch(0.65 0.18 145);
+  --color-battery-charge: oklch(0.60 0.15 250);
+  --color-battery-discharge: oklch(0.72 0.16 75);
+  --color-consumption: oklch(0.55 0.12 280);
+  --color-ev: oklch(0.60 0.20 170);
+
+  /* Status colors */
+  --color-status-online: oklch(0.65 0.18 145);
+  --color-status-offline: oklch(0.60 0.02 250);
+  --color-status-error: oklch(0.55 0.22 29);
+  --color-status-maintenance: oklch(0.75 0.15 85);
+  --color-status-commissioning: oklch(0.60 0.15 250);
+
+  /* Tariff period colors */
+  --color-tariff-peak: oklch(0.60 0.20 25);
+  --color-tariff-offpeak: oklch(0.65 0.18 145);
+  --color-tariff-shoulder: oklch(0.78 0.15 85);
+}
+
+.dark {
+  --background: oklch(0.13 0.02 250);
+  --foreground: oklch(0.95 0 0);
+  --primary: oklch(0.65 0.18 250);
+  --primary-foreground: oklch(0.13 0.02 250);
+  --secondary: oklch(0.20 0.02 250);
+  --secondary-foreground: oklch(0.95 0 0);
+  --muted: oklch(0.20 0.02 250);
+  --muted-foreground: oklch(0.60 0.02 250);
+  --accent: oklch(0.22 0.03 250);
+  --accent-foreground: oklch(0.95 0 0);
+  --destructive: oklch(0.60 0.22 29);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.28 0.03 250);
+  --input: oklch(0.28 0.03 250);
+  --ring: oklch(0.65 0.18 250);
+
+  --sidebar: oklch(0.17 0.02 250);
+  --sidebar-foreground: oklch(0.95 0 0);
+  --sidebar-primary: oklch(0.65 0.18 250);
+  --sidebar-primary-foreground: oklch(0.13 0.02 250);
+  --sidebar-accent: oklch(0.22 0.03 250);
+  --sidebar-accent-foreground: oklch(0.95 0 0);
+  --sidebar-border: oklch(0.28 0.03 250);
+  --sidebar-ring: oklch(0.65 0.18 250);
+}
+
+/* Bridge CSS variables to Tailwind v4 utilities */
+@theme inline {
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-accent: var(--brand-accent);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Energy domain utilities: bg-solar, text-grid-import, etc. */
+  --color-solar: var(--color-solar);
+  --color-grid-import: var(--color-grid-import);
+  --color-grid-export: var(--color-grid-export);
+  --color-battery-charge: var(--color-battery-charge);
+  --color-battery-discharge: var(--color-battery-discharge);
+  --color-consumption: var(--color-consumption);
+  --color-ev: var(--color-ev);
+
+  --color-status-online: var(--color-status-online);
+  --color-status-offline: var(--color-status-offline);
+  --color-status-error: var(--color-status-error);
+  --color-status-maintenance: var(--color-status-maintenance);
+  --color-status-commissioning: var(--color-status-commissioning);
+
+  --color-tariff-peak: var(--color-tariff-peak);
+  --color-tariff-offpeak: var(--color-tariff-offpeak);
+  --color-tariff-shoulder: var(--color-tariff-shoulder);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 8px);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

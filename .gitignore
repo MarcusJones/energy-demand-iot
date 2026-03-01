@@ -1,0 +1,68 @@
+# Dependencies
+node_modules/
+.claude/
+.screenshots/
+.screenshots
+# Environment files
+.env
+.env.local
+.env.*.local
+.env.demo
+.env.prod
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Runtime
+pids/
+*.pid
+*.seed
+
+# Build output
+dist/
+dist-node/
+build/
+
+# Next.js
+.next/
+next-env.d.ts
+
+# TypeScript incremental build
+*.tsbuildinfo
+
+# pnpm
+.pnpm-store/
+
+# Turborepo
+.turbo/
+
+# IDE
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# SST
+.sst/
+sst-env.d.ts
+
+# OpenNext build output
+apps/dashboard/.open-next/
+
+# Supabase
+.supabase/
+supabase/.temp/
+
+# Test coverage
+coverage/
+
+# Synthetic transaction output
+scripts/sample_transactions/synthetic/

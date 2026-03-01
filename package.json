@@ -1,0 +1,27 @@
+{
+  "name": "energyos",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "typecheck": "turbo type-check",
+    "clean": "turbo clean",
+    "deploy": "bash -c 'source .env && sst deploy --stage production'",
+    "deploy:dev": "bash -c 'source .env && sst deploy --stage dev'",
+    "remove": "bash -c 'source .env && sst remove --stage production'",
+    "remove:dev": "bash -c 'source .env && sst remove --stage dev'",
+    "diff": "bash -c 'source .env && sst diff --stage production'",
+    "diff:dev": "bash -c 'source .env && sst diff --stage dev'",
+    "sst:dev": "bash -c 'source .env && sst dev'",
+    "sst:unlock": "bash -c 'source .env && sst unlock --stage dev'"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=9"
+  }
+}
