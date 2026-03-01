@@ -244,3 +244,4 @@ N/A — this PRD is purely data layer, no UI work.
 | 2026-03-01 | 8.1-8.4 | MSW handlers, server, browser, instrumentation.ts |
 | 2026-03-01 | 9.1 | Wired useDevices() into devices page with status counts |
 | 2026-03-01 | 9.2 | Fixed all code type errors; remaining are missing module errors (need pnpm install) |
+| 2026-03-01 | — | Tasks 9.3, 9.4 blocked: user must run `pnpm install` to install zod, @faker-js/faker, msw |
