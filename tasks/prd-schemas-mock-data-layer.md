@@ -1,5 +1,5 @@
 # PRD: Schemas & Mock Data Layer (PRD-02)
-## Status: Draft
+## Status: In Progress
 ## Last Updated: 2026-03-01
 
 ## 1. Overview
@@ -168,9 +168,9 @@ N/A — this PRD is purely data layer, no UI work.
 
 ### Tasks
 
-- [ ] 1.0 Dependencies & Environment Setup
-  - [ ] 1.1 Add `zod` to `dependencies` and `@faker-js/faker`, `msw` to `devDependencies` in `apps/dashboard/package.json` — ⚠️ USER ACTION: run `pnpm install` after
-  - [ ] 1.2 Create `src/lib/env.ts` — Zod schema parsing `NEXT_PUBLIC_USE_MOCK` (boolean string), `NEXT_PUBLIC_APP_STAGE` (enum: dev/staging/production), optional Supabase vars. Export typed `env` object. Use `z.coerce` for boolean.
+- [x] 1.0 Dependencies & Environment Setup
+  - [x] 1.1 Add `zod` to `dependencies` and `@faker-js/faker`, `msw` to `devDependencies` in `apps/dashboard/package.json` — ⚠️ USER ACTION: run `pnpm install` after
+  - [x] 1.2 Create `src/lib/env.ts` — Zod schema parsing `NEXT_PUBLIC_USE_MOCK` (boolean string), `NEXT_PUBLIC_APP_STAGE` (enum: dev/staging/production), optional Supabase vars. Export typed `env` object. Use `z.coerce` for boolean.
 
 - [ ] 2.0 Zod Schemas
   - [ ] 2.1 Create `src/schemas/site.ts` — `SiteStatusEnum`, `SiteSchema`, export `type Site = z.infer<typeof SiteSchema>`
@@ -233,4 +233,5 @@ N/A — this PRD is purely data layer, no UI work.
 ### Progress Log
 | Date | Task | Notes |
 |------|------|-------|
-| | | |
+| 2026-03-01 | 1.1 | Added zod, @faker-js/faker, msw to package.json |
+| 2026-03-01 | 1.2 | Created src/lib/env.ts with Zod-validated env |
