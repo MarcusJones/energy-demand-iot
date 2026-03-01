@@ -173,11 +173,11 @@ EnergyOS manages 20 sites across Vienna, each with 5-15 IoT devices. Users need 
   - [x] 3.3 Create `src/app/(dashboard)/devices/loading.tsx` — skeleton: search bar + table rows
   - [x] 3.4 Create `src/app/(dashboard)/devices/[deviceId]/loading.tsx` — skeleton: info card + chart + table
 
-- [ ] 4.0 Site Map & List Components
-  - [ ] 4.1 Create `src/components/sites/site-map.tsx` — Leaflet map wrapped in `"use client"` + loaded via `next/dynamic` with `ssr: false`. Centers on Vienna (48.2, 16.37), zoom 12. OpenStreetMap tiles (light) / CartoDB dark_all (dark mode). Circle markers per site colored by status. Click marker → popup with site name, type, "View Details" link. Props: `sites: Site[]`
-  - [ ] 4.2 Create `src/components/sites/site-card.tsx` — shadcn Card. Shows: icon by type (Home/Building2/Factory), site name, address, type badge, status badge, device count, grid connection kVA. Clickable → navigates to `/sites/[siteId]`
-  - [ ] 4.3 Create `src/components/sites/site-filter-bar.tsx` — Search input + status dropdown + type dropdown. Props: filter state + setters. Filters site list client-side
-  - [ ] 4.4 Create `src/components/sites/site-list.tsx` — `"use client"` component. Uses `useSites()`. Renders SiteFilterBar + responsive grid of SiteCards (grid-cols-1 md:grid-cols-2). Handles loading + error
+- [x] 4.0 Site Map & List Components
+  - [x] 4.1 Create `src/components/sites/site-map.tsx` — Leaflet map wrapper (dynamic import, ssr: false) + `site-map-inner.tsx` (actual MapContainer). Vienna center, zoom 12, OSM/CartoDB dark tiles, circle markers by status, popups with link
+  - [x] 4.2 Create `src/components/sites/site-card.tsx` — shadcn Card. Shows: icon by type (Home/Building2/Factory), site name, address, type badge, status badge, device count, grid connection kVA. Clickable → navigates to `/sites/[siteId]`
+  - [x] 4.3 Create `src/components/sites/site-filter-bar.tsx` — Search input + status dropdown + type dropdown. Props: filter state + setters. Filters site list client-side
+  - [x] 4.4 Create `src/components/sites/site-list.tsx` — `"use client"` component. Uses `useSites()`. Renders SiteFilterBar + responsive grid of SiteCards (grid-cols-1 md:grid-cols-2). Handles loading + error
 
 - [ ] 5.0 Sites Pages
   - [ ] 5.1 Rewrite `src/app/(dashboard)/sites/page.tsx` — Renders SiteMap (top) + SiteList (bottom). Uses `useSites({pageSize: 100})` to get all sites for the map
@@ -198,3 +198,4 @@ EnergyOS manages 20 sites across Vienna, each with 5-15 IoT devices. Users need 
 | 2026-03-01 | 1.1–1.4 | Deps already installed, created shadcn Table + Tabs, added leaflet CSS type declaration |
 | 2026-03-01 | 2.1–2.5 | DeviceStatusBadge, DeviceTable, DeviceInfoCard, DeviceReadingChart, DeviceReadingTable |
 | 2026-03-01 | 3.1–3.4 | Devices page rewrite, device detail page, loading skeletons |
+| 2026-03-01 | 4.1–4.4 | Site map (Leaflet + dynamic import), site card, filter bar, site list grid |
