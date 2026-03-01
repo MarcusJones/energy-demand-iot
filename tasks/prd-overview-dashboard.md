@@ -176,10 +176,10 @@ The Overview Dashboard is the landing page (`/`) of EnergyOS — the first thing
 - [x] 7.0 Power Curve Chart
   - [x] 7.1 Create `src/components/dashboard/power-curve.tsx` — `"use client"` component. Calls `usePowerCurve()` hook. Transforms data into uPlot format (array of arrays). Configures 5 series with domain colors, crosshair cursor, legend. Shows loading skeleton and error state
 
-- [ ] 8.0 Filter Bar & Page Assembly
-  - [ ] 8.1 Create `src/components/dashboard/overview-filter-bar.tsx` — `"use client"` component. Site selector dropdown (shadcn Select with "All Sites" + site list from `useSites()`). Date range preset buttons (Today, Yesterday, 7D, 30D). Reads/writes Zustand filter store
-  - [ ] 8.2 Update `src/app/(dashboard)/page.tsx` — Server Component composing: OverviewFilterBar, OverviewKPIs, EnergyFlowSankey, PowerCurve in the layout specified by FR-1 and design considerations
-  - [ ] 8.3 Update `src/app/(dashboard)/loading.tsx` — Skeleton grid matching overview layout: 6 card skeletons + 2 chart skeletons
+- [x] 8.0 Filter Bar & Page Assembly
+  - [x] 8.1 Create `src/components/dashboard/overview-filter-bar.tsx` — `"use client"` component. Site selector dropdown (native select with "All Sites" + site list from `useSites()`). Date range preset buttons (Today, Yesterday, 7D, 30D). Reads/writes Zustand filter store
+  - [x] 8.2 Update `src/app/(dashboard)/page.tsx` — Server Component composing: OverviewFilterBar, OverviewKPIs, EnergyFlowSankey, PowerCurve in the layout specified by FR-1 and design considerations
+  - [x] 8.3 Update `src/app/(dashboard)/loading.tsx` — Skeleton grid matching overview layout: 6 card skeletons + 2 chart skeletons
 
 - [ ] 9.0 Verification & Cleanup
   - [ ] 9.1 Run `pnpm typecheck` — fix any type errors across all new files
@@ -196,3 +196,4 @@ The Overview Dashboard is the landing page (`/`) of EnergyOS — the first thing
 | 2026-03-01 | 5.1-5.2 | KPI card + OverviewKPIs grid with loading/error states |
 | 2026-03-01 | 6.1 | Energy Flow Sankey with ECharts + domain colors |
 | 2026-03-01 | 7.1 | Power Curve with uPlot + 6 series + crosshair cursor |
+| 2026-03-01 | 8.1-8.3 | Filter bar, overview page assembly, loading skeleton |
