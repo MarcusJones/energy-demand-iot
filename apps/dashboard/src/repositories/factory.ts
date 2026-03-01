@@ -13,6 +13,7 @@ import type { IForecastRepository } from "./interfaces/IForecastRepository";
 import type { IScheduleRepository } from "./interfaces/IScheduleRepository";
 import type { ITariffRepository } from "./interfaces/ITariffRepository";
 import type { IDREventRepository } from "./interfaces/IDREventRepository";
+import type { IDashboardRepository } from "./interfaces/IDashboardRepository";
 
 function isMockMode(): boolean {
   return process.env.NEXT_PUBLIC_USE_MOCK !== "false";
@@ -93,4 +94,14 @@ export async function getDREventRepository(): Promise<IDREventRepository> {
     return getMockDREventRepository();
   }
   notImplemented("DREvent");
+}
+
+export async function getDashboardRepository(): Promise<IDashboardRepository> {
+  if (isMockMode()) {
+    const { getMockDashboardRepository } = await import(
+      "./mock/MockDashboardRepository"
+    );
+    return getMockDashboardRepository();
+  }
+  notImplemented("Dashboard");
 }

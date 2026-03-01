@@ -1,5 +1,5 @@
 # PRD: Overview Dashboard (PRD-03)
-## Status: Draft
+## Status: In Progress
 ## Last Updated: 2026-03-01
 
 ## 1. Overview
@@ -111,3 +111,84 @@ The Overview Dashboard is the landing page (`/`) of EnergyOS — the first thing
 
 - **OQ-1:** Should the Power Curve show stacked areas (solar fills beneath consumption line) or simple overlaid lines? Starting with overlaid lines, can iterate.
 - **OQ-2:** Battery SoC KPI — show as percentage (avg across batteries) or as absolute kWh remaining? Starting with percentage.
+
+---
+
+## Implementation
+
+### Relevant Files
+
+**New files (all paths relative to `apps/dashboard/src/`):**
+- `schemas/dashboard.ts` — Zod schemas for KPI, EnergyFlow, PowerCurve types
+- `repositories/interfaces/IDashboardRepository.ts` — Dashboard-specific data contract
+- `repositories/mock/MockDashboardRepository.ts` — Mock implementation using generators
+- `repositories/factory.ts` — Add getDashboardRepository() (modify existing)
+- `hooks/use-dashboard.ts` — TanStack Query hooks for dashboard data
+- `stores/use-filter-store.ts` — Zustand store for date range + site selector
+- `components/charts/uplot-wrapper.tsx` — Reusable uPlot React wrapper
+- `components/charts/echarts-wrapper.tsx` — Reusable ECharts React wrapper
+- `components/charts/sparkline.tsx` — Tiny uPlot sparkline component
+- `components/charts/kpi-card.tsx` — KPI card with value + delta + sparkline
+- `components/dashboard/overview-filter-bar.tsx` — Site + date range selectors
+- `components/dashboard/overview-kpis.tsx` — 6 KPI cards grid
+- `components/dashboard/energy-flow-sankey.tsx` — ECharts Sankey diagram
+- `components/dashboard/power-curve.tsx` — uPlot 24h multi-series chart
+- `app/(dashboard)/page.tsx` — Overview page (modify existing stub)
+- `app/(dashboard)/loading.tsx` — Skeleton loading state (modify existing)
+
+**Modified files:**
+- `apps/dashboard/package.json` — Add uplot, echarts, zustand, date-fns dependencies
+
+### Notes
+- Dependencies needed: `uplot` (production), `echarts` (production), `zustand` (production), `date-fns` (production)
+- After adding deps to package.json, user must run `pnpm install`
+- Typecheck: `pnpm typecheck`
+- Build verification: `pnpm build`
+- All paths below are relative to `apps/dashboard/src/`
+
+### Tasks
+
+- [x] 1.0 Dependencies & Schemas
+  - [x] 1.1 Add `uplot`, `echarts`, `zustand`, `date-fns` to `apps/dashboard/package.json` dependencies — user will run `pnpm install`
+  - [x] 1.2 Create `src/schemas/dashboard.ts` — Zod schemas for `KPIData` (label, value, unit, delta, sparklineData[]), `EnergyFlowData` (nodes[], links[]), `PowerCurveData` (timestamps[], series: Record<string, number[]>)
+
+- [x] 2.0 Dashboard Data Layer
+  - [x] 2.1 Create `src/repositories/interfaces/IDashboardRepository.ts` — interface with `getKPIs(siteId: string | null, from: Date, to: Date)`, `getEnergyFlow(siteId: string | null, from: Date, to: Date)`, `getPowerCurve(siteId: string | null, from: Date, to: Date)`
+  - [x] 2.2 Create `src/repositories/mock/MockDashboardRepository.ts` — implements IDashboardRepository. Uses generators from seed data to compute portfolio-level aggregations. `getKPIs()` returns 6 KPI objects with sparkline arrays and delta calculations. `getEnergyFlow()` returns Sankey nodes/links. `getPowerCurve()` returns multi-series time-series data at 15-min resolution
+  - [x] 2.3 Add `getDashboardRepository()` to `src/repositories/factory.ts`
+  - [x] 2.4 Create `src/hooks/use-dashboard.ts` — `useKPIs()`, `useEnergyFlow()`, `usePowerCurve()`. Each reads siteId and dateRange from the Zustand filter store
+
+- [x] 3.0 Zustand Filter Store
+  - [x] 3.1 Create `src/stores/use-filter-store.ts` — Zustand store with `siteId: string | null` (null = all sites), `dateRange: { from: Date; to: Date; preset: string }`, `setSiteId(id)`, `setDateRange(preset)`. Preset options: "today", "yesterday", "7d", "30d". Default: today + all sites
+
+- [ ] 4.0 Chart Wrappers
+  - [ ] 4.1 Create `src/components/charts/uplot-wrapper.tsx` — `"use client"` React wrapper for uPlot. Props: `data`, `options` (partial), `width`/`height`. Manages div ref, creates uPlot instance, handles resize via ResizeObserver, calls `setData()` on data change, destroys on unmount. Reads colors from CSS variables
+  - [ ] 4.2 Create `src/components/charts/echarts-wrapper.tsx` — `"use client"` React wrapper for ECharts. Props: `option` (ECharts option object), `height`. Dynamic imports echarts. Manages div ref, creates instance, handles resize, disposes on unmount. Reads colors from CSS variables
+  - [ ] 4.3 Create `src/components/charts/sparkline.tsx` — Tiny uPlot sparkline (80×32px). Props: `data: number[]`, `color: string`. No axes, no grid, just a filled line. Uses uplot-wrapper internally
+
+- [ ] 5.0 KPI Cards
+  - [ ] 5.1 Create `src/components/charts/kpi-card.tsx` — shadcn Card with 4px left border in domain color. Shows label, value (text-3xl font-bold), unit, delta Badge (green up / red down), and Sparkline. Props: `label`, `value`, `unit`, `delta`, `sparklineData`, `color`, `invertDelta?` (for consumption, higher = bad)
+  - [ ] 5.2 Create `src/components/dashboard/overview-kpis.tsx` — `"use client"` component. Calls `useKPIs()` hook. Renders 6 KpiCard components in responsive grid (grid-cols-1 sm:grid-cols-2 lg:grid-cols-3). Handles loading (6 Skeleton cards) and error states
+
+- [ ] 6.0 Energy Flow Sankey
+  - [ ] 6.1 Create `src/components/dashboard/energy-flow-sankey.tsx` — `"use client"` component. Calls `useEnergyFlow()` hook. Passes Sankey ECharts option to EChartsWrapper. Maps domain colors from CSS variables to node colors. Shows loading skeleton and error state
+
+- [ ] 7.0 Power Curve Chart
+  - [ ] 7.1 Create `src/components/dashboard/power-curve.tsx` — `"use client"` component. Calls `usePowerCurve()` hook. Transforms data into uPlot format (array of arrays). Configures 5 series with domain colors, crosshair cursor, legend. Shows loading skeleton and error state
+
+- [ ] 8.0 Filter Bar & Page Assembly
+  - [ ] 8.1 Create `src/components/dashboard/overview-filter-bar.tsx` — `"use client"` component. Site selector dropdown (shadcn Select with "All Sites" + site list from `useSites()`). Date range preset buttons (Today, Yesterday, 7D, 30D). Reads/writes Zustand filter store
+  - [ ] 8.2 Update `src/app/(dashboard)/page.tsx` — Server Component composing: OverviewFilterBar, OverviewKPIs, EnergyFlowSankey, PowerCurve in the layout specified by FR-1 and design considerations
+  - [ ] 8.3 Update `src/app/(dashboard)/loading.tsx` — Skeleton grid matching overview layout: 6 card skeletons + 2 chart skeletons
+
+- [ ] 9.0 Verification & Cleanup
+  - [ ] 9.1 Run `pnpm typecheck` — fix any type errors across all new files
+  - [ ] 9.2 Run `pnpm build` — verify clean production build
+  - [ ] 9.3 Visual smoke test — verify page renders KPIs, Sankey, and Power Curve with mock data
+
+### Progress Log
+| Date | Task | Notes |
+|------|------|-------|
+| 2026-03-01 | 1.1-1.2 | Added uplot/echarts/zustand/date-fns deps + dashboard schemas |
+| 2026-03-01 | 2.1-2.4 | Dashboard repo interface, mock impl, factory entry, hooks |
+| 2026-03-01 | 3.1 | Zustand filter store with date presets + site selector |
