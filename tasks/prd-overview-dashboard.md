@@ -161,20 +161,20 @@ The Overview Dashboard is the landing page (`/`) of EnergyOS — the first thing
 - [x] 3.0 Zustand Filter Store
   - [x] 3.1 Create `src/stores/use-filter-store.ts` — Zustand store with `siteId: string | null` (null = all sites), `dateRange: { from: Date; to: Date; preset: string }`, `setSiteId(id)`, `setDateRange(preset)`. Preset options: "today", "yesterday", "7d", "30d". Default: today + all sites
 
-- [ ] 4.0 Chart Wrappers
-  - [ ] 4.1 Create `src/components/charts/uplot-wrapper.tsx` — `"use client"` React wrapper for uPlot. Props: `data`, `options` (partial), `width`/`height`. Manages div ref, creates uPlot instance, handles resize via ResizeObserver, calls `setData()` on data change, destroys on unmount. Reads colors from CSS variables
-  - [ ] 4.2 Create `src/components/charts/echarts-wrapper.tsx` — `"use client"` React wrapper for ECharts. Props: `option` (ECharts option object), `height`. Dynamic imports echarts. Manages div ref, creates instance, handles resize, disposes on unmount. Reads colors from CSS variables
-  - [ ] 4.3 Create `src/components/charts/sparkline.tsx` — Tiny uPlot sparkline (80×32px). Props: `data: number[]`, `color: string`. No axes, no grid, just a filled line. Uses uplot-wrapper internally
+- [x] 4.0 Chart Wrappers
+  - [x] 4.1 Create `src/components/charts/uplot-wrapper.tsx` — `"use client"` React wrapper for uPlot. Props: `data`, `options` (partial), `width`/`height`. Manages div ref, creates uPlot instance, handles resize via ResizeObserver, calls `setData()` on data change, destroys on unmount. Reads colors from CSS variables
+  - [x] 4.2 Create `src/components/charts/echarts-wrapper.tsx` — `"use client"` React wrapper for ECharts. Props: `option` (ECharts option object), `height`. Dynamic imports echarts. Manages div ref, creates instance, handles resize, disposes on unmount. Reads colors from CSS variables
+  - [x] 4.3 Create `src/components/charts/sparkline.tsx` — Tiny uPlot sparkline (80×32px). Props: `data: number[]`, `color: string`. No axes, no grid, just a filled line. Uses uplot-wrapper internally
 
-- [ ] 5.0 KPI Cards
-  - [ ] 5.1 Create `src/components/charts/kpi-card.tsx` — shadcn Card with 4px left border in domain color. Shows label, value (text-3xl font-bold), unit, delta Badge (green up / red down), and Sparkline. Props: `label`, `value`, `unit`, `delta`, `sparklineData`, `color`, `invertDelta?` (for consumption, higher = bad)
-  - [ ] 5.2 Create `src/components/dashboard/overview-kpis.tsx` — `"use client"` component. Calls `useKPIs()` hook. Renders 6 KpiCard components in responsive grid (grid-cols-1 sm:grid-cols-2 lg:grid-cols-3). Handles loading (6 Skeleton cards) and error states
+- [x] 5.0 KPI Cards
+  - [x] 5.1 Create `src/components/charts/kpi-card.tsx` — shadcn Card with 4px left border in domain color. Shows label, value (text-3xl font-bold), unit, delta Badge (green up / red down), and Sparkline. Props: `label`, `value`, `unit`, `delta`, `sparklineData`, `color`, `invertDelta?` (for consumption, higher = bad)
+  - [x] 5.2 Create `src/components/dashboard/overview-kpis.tsx` — `"use client"` component. Calls `useKPIs()` hook. Renders 6 KpiCard components in responsive grid (grid-cols-1 sm:grid-cols-2 lg:grid-cols-3). Handles loading (6 Skeleton cards) and error states
 
-- [ ] 6.0 Energy Flow Sankey
-  - [ ] 6.1 Create `src/components/dashboard/energy-flow-sankey.tsx` — `"use client"` component. Calls `useEnergyFlow()` hook. Passes Sankey ECharts option to EChartsWrapper. Maps domain colors from CSS variables to node colors. Shows loading skeleton and error state
+- [x] 6.0 Energy Flow Sankey
+  - [x] 6.1 Create `src/components/dashboard/energy-flow-sankey.tsx` — `"use client"` component. Calls `useEnergyFlow()` hook. Passes Sankey ECharts option to EChartsWrapper. Maps domain colors from CSS variables to node colors. Shows loading skeleton and error state
 
-- [ ] 7.0 Power Curve Chart
-  - [ ] 7.1 Create `src/components/dashboard/power-curve.tsx` — `"use client"` component. Calls `usePowerCurve()` hook. Transforms data into uPlot format (array of arrays). Configures 5 series with domain colors, crosshair cursor, legend. Shows loading skeleton and error state
+- [x] 7.0 Power Curve Chart
+  - [x] 7.1 Create `src/components/dashboard/power-curve.tsx` — `"use client"` component. Calls `usePowerCurve()` hook. Transforms data into uPlot format (array of arrays). Configures 5 series with domain colors, crosshair cursor, legend. Shows loading skeleton and error state
 
 - [ ] 8.0 Filter Bar & Page Assembly
   - [ ] 8.1 Create `src/components/dashboard/overview-filter-bar.tsx` — `"use client"` component. Site selector dropdown (shadcn Select with "All Sites" + site list from `useSites()`). Date range preset buttons (Today, Yesterday, 7D, 30D). Reads/writes Zustand filter store
@@ -192,3 +192,7 @@ The Overview Dashboard is the landing page (`/`) of EnergyOS — the first thing
 | 2026-03-01 | 1.1-1.2 | Added uplot/echarts/zustand/date-fns deps + dashboard schemas |
 | 2026-03-01 | 2.1-2.4 | Dashboard repo interface, mock impl, factory entry, hooks |
 | 2026-03-01 | 3.1 | Zustand filter store with date presets + site selector |
+| 2026-03-01 | 4.1-4.3 | uPlot wrapper, ECharts wrapper, Sparkline components |
+| 2026-03-01 | 5.1-5.2 | KPI card + OverviewKPIs grid with loading/error states |
+| 2026-03-01 | 6.1 | Energy Flow Sankey with ECharts + domain colors |
+| 2026-03-01 | 7.1 | Power Curve with uPlot + 6 series + crosshair cursor |
