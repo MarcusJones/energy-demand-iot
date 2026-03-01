@@ -29,7 +29,6 @@ function formatValue(value: number, unit: string): string {
 }
 
 function formatDelta(delta: number): string {
-  const pct = Math.abs(delta * 100);
   const sign = delta >= 0 ? "+" : "";
   return `${sign}${(delta * 100).toFixed(1)}%`;
 }

@@ -39,10 +39,12 @@ interface FilterState {
 /** Reference "now" for mock data — matches seed.ts */
 const MOCK_NOW = new Date("2026-02-28T14:30:00+01:00");
 
-export const useFilterStore = create<FilterState>((set) => ({
-  siteId: null,
-  dateRange: getDateRange("today", MOCK_NOW),
-  setSiteId: (id) => set({ siteId: id }),
-  setDateRange: (preset) =>
-    set({ dateRange: getDateRange(preset, MOCK_NOW) }),
-}));
+export const useFilterStore = create<FilterState>(
+  (set: (partial: Partial<FilterState>) => void) => ({
+    siteId: null,
+    dateRange: getDateRange("today", MOCK_NOW),
+    setSiteId: (id: string | null) => set({ siteId: id }),
+    setDateRange: (preset: DatePreset) =>
+      set({ dateRange: getDateRange(preset, MOCK_NOW) }),
+  })
+);

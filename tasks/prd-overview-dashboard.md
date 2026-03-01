@@ -182,9 +182,9 @@ The Overview Dashboard is the landing page (`/`) of EnergyOS — the first thing
   - [x] 8.3 Update `src/app/(dashboard)/loading.tsx` — Skeleton grid matching overview layout: 6 card skeletons + 2 chart skeletons
 
 - [ ] 9.0 Verification & Cleanup
-  - [ ] 9.1 Run `pnpm typecheck` — fix any type errors across all new files
-  - [ ] 9.2 Run `pnpm build` — verify clean production build
-  - [ ] 9.3 Visual smoke test — verify page renders KPIs, Sankey, and Power Curve with mock data
+  - [x] 9.1 Run `pnpm typecheck` — fix code type errors (unused var, implicit any). Remaining errors are all "Cannot find module" — resolved by `pnpm install`
+  - [ ] 9.2 Run `pnpm build` — verify clean production build — ⚠️ BLOCKED: needs `pnpm install` first
+  - [ ] 9.3 Visual smoke test — verify page renders KPIs, Sankey, and Power Curve with mock data — ⚠️ BLOCKED: needs `pnpm install` first
 
 ### Progress Log
 | Date | Task | Notes |
@@ -197,3 +197,5 @@ The Overview Dashboard is the landing page (`/`) of EnergyOS — the first thing
 | 2026-03-01 | 6.1 | Energy Flow Sankey with ECharts + domain colors |
 | 2026-03-01 | 7.1 | Power Curve with uPlot + 6 series + crosshair cursor |
 | 2026-03-01 | 8.1-8.3 | Filter bar, overview page assembly, loading skeleton |
+| 2026-03-01 | 9.1 | Fixed unused var + implicit any. All remaining errors are missing modules (need pnpm install) |
+| 2026-03-01 | — | Tasks 9.2, 9.3 blocked: user must run `pnpm install` to install uplot, echarts, zustand, date-fns |
