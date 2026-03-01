@@ -197,14 +197,14 @@ N/A — this PRD is purely data layer, no UI work.
   - [x] 4.3 Create `src/repositories/mock/data/sites.ts` — generate 20 sites using faker + Vienna coordinates. 12 residential, 6 commercial, 2 industrial. Deterministic names/addresses
   - [x] 4.4 Create `src/repositories/mock/data/devices.ts` — generate ~200 devices distributed by site type. Solar + smart meter on all, battery on 40%, EV charger on 30%, heat pump on residential. Apply status distribution (90/5/3/2)
 
-- [ ] 5.0 Mock Repository Implementations
-  - [ ] 5.1 Create `src/repositories/mock/MockSiteRepository.ts` — implements `ISiteRepository`. Singleton. Filters by status/search, paginates, sorts. `getSummary()` aggregates device counts + energy from readings
-  - [ ] 5.2 Create `src/repositories/mock/MockDeviceRepository.ts` — implements `IDeviceRepository`. Singleton. Filters by siteId/type/status/search, paginates, sorts. `getCountsByStatus()` and `getCountsByType()` return grouped counts
-  - [ ] 5.3 Create `src/repositories/mock/MockReadingRepository.ts` — implements `IReadingRepository`. **Lazy generation**: `getRange()` generates readings on-the-fly using generators for the requested time window. `getLatest()` generates single current reading. `getDailyTotals()` aggregates generated data
-  - [ ] 5.4 Create `src/repositories/mock/MockForecastRepository.ts` — implements `IForecastRepository`. Generates forecast using `generateForecast()` for requested horizon. `compareWithActual()` returns forecast + generated actuals with intentional drift
-  - [ ] 5.5 Create `src/repositories/mock/MockScheduleRepository.ts` — implements `IScheduleRepository`. Pre-generates ~50 schedules across devices. `create()` adds to in-memory array (session-persistent). `cancel()` updates status
-  - [ ] 5.6 Create `src/repositories/mock/MockTariffRepository.ts` — implements `ITariffRepository`. 2-3 tariff structures (residential ToU, commercial flat, industrial demand). `getCurrentPrice()` maps current hour to period rate
-  - [ ] 5.7 Create `src/repositories/mock/MockDREventRepository.ts` — implements `IDREventRepository`. Pre-generates ~10 DR events (mix of statuses). `getActive()` filters by current time window
+- [x] 5.0 Mock Repository Implementations
+  - [x] 5.1 Create `src/repositories/mock/MockSiteRepository.ts` — implements `ISiteRepository`. Singleton. Filters by status/search, paginates, sorts. `getSummary()` aggregates device counts + energy from readings
+  - [x] 5.2 Create `src/repositories/mock/MockDeviceRepository.ts` — implements `IDeviceRepository`. Singleton. Filters by siteId/type/status/search, paginates, sorts. `getCountsByStatus()` and `getCountsByType()` return grouped counts
+  - [x] 5.3 Create `src/repositories/mock/MockReadingRepository.ts` — implements `IReadingRepository`. **Lazy generation**: `getRange()` generates readings on-the-fly using generators for the requested time window. `getLatest()` generates single current reading. `getDailyTotals()` aggregates generated data
+  - [x] 5.4 Create `src/repositories/mock/MockForecastRepository.ts` — implements `IForecastRepository`. Generates forecast using `generateForecast()` for requested horizon. `compareWithActual()` returns forecast + generated actuals with intentional drift
+  - [x] 5.5 Create `src/repositories/mock/MockScheduleRepository.ts` — implements `IScheduleRepository`. Pre-generates ~50 schedules across devices. `create()` adds to in-memory array (session-persistent). `cancel()` updates status
+  - [x] 5.6 Create `src/repositories/mock/MockTariffRepository.ts` — implements `ITariffRepository`. 2-3 tariff structures (residential ToU, commercial flat, industrial demand). `getCurrentPrice()` maps current hour to period rate
+  - [x] 5.7 Create `src/repositories/mock/MockDREventRepository.ts` — implements `IDREventRepository`. Pre-generates ~10 DR events (mix of statuses). `getActive()` filters by current time window
 
 - [ ] 6.0 Repository Factory
   - [ ] 6.1 Create `src/repositories/factory.ts` — one `get[Entity]Repository()` async function per entity. Checks `NEXT_PUBLIC_USE_MOCK` env var. Uses dynamic `import()` for mock implementations. Returns singleton instances. Throws descriptive error if real repo requested but not yet implemented
@@ -238,3 +238,4 @@ N/A — this PRD is purely data layer, no UI work.
 | 2026-03-01 | 2.1-2.7 | All 7 Zod schemas created (site, device, reading, tariff, schedule, forecast, dr-event) |
 | 2026-03-01 | 3.1-3.8 | All 8 repository interface files created (common, site, device, reading, forecast, schedule, tariff, dr-event) |
 | 2026-03-01 | 4.1-4.4 | Seed, 6 generators, 20 sites, ~200 devices created |
+| 2026-03-01 | 5.1-5.7 | All 7 mock repository implementations (site, device, reading, forecast, schedule, tariff, dr-event) |
