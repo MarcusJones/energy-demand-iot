@@ -181,15 +181,15 @@ N/A — this PRD is purely data layer, no UI work.
   - [x] 2.6 Create `src/schemas/forecast.ts` — `ForecastTypeEnum`, `ForecastSourceEnum`, `ForecastValueSchema`, `ForecastSchema`, export inferred types
   - [x] 2.7 Create `src/schemas/dr-event.ts` — `DREventTypeEnum`, `DREventStatusEnum`, `DREventSchema`, export inferred types
 
-- [ ] 3.0 Repository Interfaces
-  - [ ] 3.1 Create `src/repositories/interfaces/common.ts` — `PaginatedResult<T>`, `SortParams`, `ListParams` (page, pageSize, sortBy, sortDir)
-  - [ ] 3.2 Create `src/repositories/interfaces/ISiteRepository.ts` — `SiteListParams extends ListParams` (search?, status?), interface with `list()`, `getById()`, `getSummary()`
-  - [ ] 3.3 Create `src/repositories/interfaces/IDeviceRepository.ts` — `DeviceListParams extends ListParams` (siteId?, type?, status?, search?), interface with `list()`, `getById()`, `getCountsByStatus()`, `getCountsByType()`
-  - [ ] 3.4 Create `src/repositories/interfaces/IReadingRepository.ts` — interface with `getLatest()`, `getRange()`, `getAggregate()`, `getDailyTotals()`
-  - [ ] 3.5 Create `src/repositories/interfaces/IForecastRepository.ts` — interface with `getLatest()`, `getForHorizon()`, `compareWithActual()`
-  - [ ] 3.6 Create `src/repositories/interfaces/IScheduleRepository.ts` — `ScheduleListParams extends ListParams`, interface with `list()`, `getForDevice()`, `getForDateRange()`, `create()`, `cancel()`
-  - [ ] 3.7 Create `src/repositories/interfaces/ITariffRepository.ts` — interface with `getActive()`, `getForSite()`, `getCurrentPrice()`
-  - [ ] 3.8 Create `src/repositories/interfaces/IDREventRepository.ts` — `DREventListParams extends ListParams`, interface with `list()`, `getById()`, `getActive()`, `getForSite()`
+- [x] 3.0 Repository Interfaces
+  - [x] 3.1 Create `src/repositories/interfaces/common.ts` — `PaginatedResult<T>`, `SortParams`, `ListParams` (page, pageSize, sortBy, sortDir)
+  - [x] 3.2 Create `src/repositories/interfaces/ISiteRepository.ts` — `SiteListParams extends ListParams` (search?, status?), interface with `list()`, `getById()`, `getSummary()`
+  - [x] 3.3 Create `src/repositories/interfaces/IDeviceRepository.ts` — `DeviceListParams extends ListParams` (siteId?, type?, status?, search?), interface with `list()`, `getById()`, `getCountsByStatus()`, `getCountsByType()`
+  - [x] 3.4 Create `src/repositories/interfaces/IReadingRepository.ts` — interface with `getLatest()`, `getRange()`, `getAggregate()`, `getDailyTotals()`
+  - [x] 3.5 Create `src/repositories/interfaces/IForecastRepository.ts` — interface with `getLatest()`, `getForHorizon()`, `compareWithActual()`
+  - [x] 3.6 Create `src/repositories/interfaces/IScheduleRepository.ts` — `ScheduleListParams extends ListParams`, interface with `list()`, `getForDevice()`, `getForDateRange()`, `create()`, `cancel()`
+  - [x] 3.7 Create `src/repositories/interfaces/ITariffRepository.ts` — interface with `getActive()`, `getForSite()`, `getCurrentPrice()`
+  - [x] 3.8 Create `src/repositories/interfaces/IDREventRepository.ts` — `DREventListParams extends ListParams`, interface with `list()`, `getById()`, `getActive()`, `getForSite()`
 
 - [ ] 4.0 Mock Data Seed & Generators
   - [ ] 4.1 Create `src/repositories/mock/data/seed.ts` — `faker.seed(42)`, export constants: `NUM_SITES=20`, `DATE_RANGE_DAYS=30`, `READING_INTERVAL_MIN=15`, `NOW` (fixed reference date), Vienna coordinate bounds
@@ -236,3 +236,4 @@ N/A — this PRD is purely data layer, no UI work.
 | 2026-03-01 | 1.1 | Added zod, @faker-js/faker, msw to package.json |
 | 2026-03-01 | 1.2 | Created src/lib/env.ts with Zod-validated env |
 | 2026-03-01 | 2.1-2.7 | All 7 Zod schemas created (site, device, reading, tariff, schedule, forecast, dr-event) |
+| 2026-03-01 | 3.1-3.8 | All 8 repository interface files created (common, site, device, reading, forecast, schedule, tariff, dr-event) |
