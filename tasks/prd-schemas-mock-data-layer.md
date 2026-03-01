@@ -172,14 +172,14 @@ N/A — this PRD is purely data layer, no UI work.
   - [x] 1.1 Add `zod` to `dependencies` and `@faker-js/faker`, `msw` to `devDependencies` in `apps/dashboard/package.json` — ⚠️ USER ACTION: run `pnpm install` after
   - [x] 1.2 Create `src/lib/env.ts` — Zod schema parsing `NEXT_PUBLIC_USE_MOCK` (boolean string), `NEXT_PUBLIC_APP_STAGE` (enum: dev/staging/production), optional Supabase vars. Export typed `env` object. Use `z.coerce` for boolean.
 
-- [ ] 2.0 Zod Schemas
-  - [ ] 2.1 Create `src/schemas/site.ts` — `SiteStatusEnum`, `SiteSchema`, export `type Site = z.infer<typeof SiteSchema>`
-  - [ ] 2.2 Create `src/schemas/device.ts` — `DeviceTypeEnum`, `DeviceStatusEnum`, `DeviceSchema`, export inferred types
-  - [ ] 2.3 Create `src/schemas/reading.ts` — `ReadingQualityEnum`, `ReadingSchema`, `AggregatedReadingSchema`, `ReadingResolutionEnum` (1min/5min/15min/1h/1d), export inferred types
-  - [ ] 2.4 Create `src/schemas/tariff.ts` — `TariffPeriodSchema`, `TariffSchema`, `RateTypeEnum` (peak/offpeak/shoulder), export inferred types
-  - [ ] 2.5 Create `src/schemas/schedule.ts` — `ScheduleActionEnum`, `ScheduleStatusEnum`, `ScheduleSourceEnum`, `ScheduleSchema`, export inferred types
-  - [ ] 2.6 Create `src/schemas/forecast.ts` — `ForecastTypeEnum`, `ForecastSourceEnum`, `ForecastValueSchema`, `ForecastSchema`, export inferred types
-  - [ ] 2.7 Create `src/schemas/dr-event.ts` — `DREventTypeEnum`, `DREventStatusEnum`, `DREventSchema`, export inferred types
+- [x] 2.0 Zod Schemas
+  - [x] 2.1 Create `src/schemas/site.ts` — `SiteStatusEnum`, `SiteSchema`, export `type Site = z.infer<typeof SiteSchema>`
+  - [x] 2.2 Create `src/schemas/device.ts` — `DeviceTypeEnum`, `DeviceStatusEnum`, `DeviceSchema`, export inferred types
+  - [x] 2.3 Create `src/schemas/reading.ts` — `ReadingQualityEnum`, `ReadingSchema`, `AggregatedReadingSchema`, `ReadingResolutionEnum` (1min/5min/15min/1h/1d), export inferred types
+  - [x] 2.4 Create `src/schemas/tariff.ts` — `TariffPeriodSchema`, `TariffSchema`, `RateTypeEnum` (peak/offpeak/shoulder), export inferred types
+  - [x] 2.5 Create `src/schemas/schedule.ts` — `ScheduleActionEnum`, `ScheduleStatusEnum`, `ScheduleSourceEnum`, `ScheduleSchema`, export inferred types
+  - [x] 2.6 Create `src/schemas/forecast.ts` — `ForecastTypeEnum`, `ForecastSourceEnum`, `ForecastValueSchema`, `ForecastSchema`, export inferred types
+  - [x] 2.7 Create `src/schemas/dr-event.ts` — `DREventTypeEnum`, `DREventStatusEnum`, `DREventSchema`, export inferred types
 
 - [ ] 3.0 Repository Interfaces
   - [ ] 3.1 Create `src/repositories/interfaces/common.ts` — `PaginatedResult<T>`, `SortParams`, `ListParams` (page, pageSize, sortBy, sortDir)
@@ -235,3 +235,4 @@ N/A — this PRD is purely data layer, no UI work.
 |------|------|-------|
 | 2026-03-01 | 1.1 | Added zod, @faker-js/faker, msw to package.json |
 | 2026-03-01 | 1.2 | Created src/lib/env.ts with Zod-validated env |
+| 2026-03-01 | 2.1-2.7 | All 7 Zod schemas created (site, device, reading, tariff, schedule, forecast, dr-event) |
