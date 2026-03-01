@@ -160,12 +160,12 @@ EnergyOS manages 20 sites across Vienna, each with 5-15 IoT devices. Users need 
   - [x] 1.3 Create `src/components/ui/tabs.tsx` — shadcn Tabs component (Tabs, TabsList, TabsTrigger, TabsContent)
   - [x] 1.4 Create `src/types/leaflet.d.ts` — type declaration for `leaflet/dist/leaflet.css` module (added to existing css.d.ts)
 
-- [ ] 2.0 Shared Device Components
-  - [ ] 2.1 Create `src/components/devices/device-status-badge.tsx` — renders colored dot (8px circle) + status label. Props: `status: DeviceStatus`. Uses `bg-status-{status}` design tokens via inline style reading CSS variable
-  - [ ] 2.2 Create `src/components/devices/device-table.tsx` — full DataTable. Props: `siteId?: string` (for filtering when embedded in site detail). Columns: Name, Type, Site, Status (badge), Capacity, Last Seen (relative), Protocol. Sortable headers (click toggles asc/desc, highlighted active column). Filter bar: search input, status dropdown, type dropdown. Pagination: prev/next, page display, page size selector (10/20/50). Row click navigates to `/devices/[deviceId]`. Uses `useDevices()` hook with all params
-  - [ ] 2.3 Create `src/components/devices/device-info-card.tsx` — shadcn Card showing device metadata: type, rated capacity, protocol, firmware, site name (linked), status badge, last seen (relative time via `formatDistanceToNow`)
-  - [ ] 2.4 Create `src/components/devices/device-reading-chart.tsx` — `"use client"` component. Uses `useReadingRange(deviceId, from, to, "15min")` for last 24h. Renders single-series power_w line via UPlotWrapper. Loading skeleton and error state
-  - [ ] 2.5 Create `src/components/devices/device-reading-table.tsx` — Table showing last 50 readings. Columns: Timestamp (formatted), Power (W), Energy (kWh), Voltage (V), SoC (% if battery, else —), Quality badge. Sortable by timestamp
+- [x] 2.0 Shared Device Components
+  - [x] 2.1 Create `src/components/devices/device-status-badge.tsx` — renders colored dot (8px circle) + status label. Props: `status: DeviceStatus`. Uses `bg-status-{status}` design tokens via inline style reading CSS variable
+  - [x] 2.2 Create `src/components/devices/device-table.tsx` — full DataTable. Props: `siteId?: string` (for filtering when embedded in site detail). Columns: Name, Type, Site, Status (badge), Capacity, Last Seen (relative), Protocol. Sortable headers (click toggles asc/desc, highlighted active column). Filter bar: search input, status dropdown, type dropdown. Pagination: prev/next, page display, page size selector (10/20/50). Row click navigates to `/devices/[deviceId]`. Uses `useDevices()` hook with all params
+  - [x] 2.3 Create `src/components/devices/device-info-card.tsx` — shadcn Card showing device metadata: type, rated capacity, protocol, firmware, site name (linked), status badge, last seen (relative time via `formatDistanceToNow`)
+  - [x] 2.4 Create `src/components/devices/device-reading-chart.tsx` — `"use client"` component. Uses `useReadingRange(deviceId, from, to, "15min")` for last 24h. Renders single-series power_w line via UPlotWrapper. Loading skeleton and error state
+  - [x] 2.5 Create `src/components/devices/device-reading-table.tsx` — Table showing last 50 readings. Columns: Timestamp (formatted), Power (W), Energy (kWh), Voltage (V), SoC (% if battery, else —), Quality badge. Sortable by timestamp
 
 - [ ] 3.0 Devices Pages
   - [ ] 3.1 Rewrite `src/app/(dashboard)/devices/page.tsx` — replace current stub with DeviceTable component. Page title + description header
@@ -196,3 +196,4 @@ EnergyOS manages 20 sites across Vienna, each with 5-15 IoT devices. Users need 
 | Date | Task | Notes |
 |------|------|-------|
 | 2026-03-01 | 1.1–1.4 | Deps already installed, created shadcn Table + Tabs, added leaflet CSS type declaration |
+| 2026-03-01 | 2.1–2.5 | DeviceStatusBadge, DeviceTable, DeviceInfoCard, DeviceReadingChart, DeviceReadingTable |
