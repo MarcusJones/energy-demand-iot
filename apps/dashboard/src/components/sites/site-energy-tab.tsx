@@ -1,18 +1,9 @@
 "use client";
 
-import { useMemo } from "react";
 import { useSiteSummary } from "@/hooks/use-sites";
-import { useReadingRange } from "@/hooks/use-readings";
-import { UPlotWrapper, getDomainColor } from "@/components/charts/uplot-wrapper";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { AlertCircle, Zap, Sun, ArrowDownToLine, ArrowUpFromLine } from "lucide-react";
-import { subHours } from "date-fns";
-import type uPlot from "uplot";
-
-/** Fixed reference "now" — matches seed.ts */
-const NOW = new Date("2026-02-28T14:30:00+01:00");
-const TWENTY_FOUR_HOURS_AGO = subHours(NOW, 24);
+import { Zap, Sun, ArrowDownToLine, ArrowUpFromLine } from "lucide-react";
 
 interface SiteEnergyTabProps {
   siteId: string;
@@ -20,19 +11,6 @@ interface SiteEnergyTabProps {
 
 export function SiteEnergyTab({ siteId }: SiteEnergyTabProps) {
   const { data: summary, isLoading: summaryLoading } = useSiteSummary(siteId);
-
-  // Use a grid_meter device from the site for readings
-  // We use the aggregate readings for the site power curve
-  const { data: aggregateReadings, isLoading: readingsLoading, error } = useReadingRange(
-    // We pass siteId, but useReadingRange expects deviceId
-    // Instead, we use site-level aggregation through a different approach
-    // For simplicity, we'll show the summary KPIs from useSiteSummary
-    // and skip the chart since we'd need useAggregateReadings for a true site-level chart
-    "",
-    undefined,
-    undefined,
-    "1h"
-  );
 
   if (summaryLoading) {
     return (

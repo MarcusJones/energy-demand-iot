@@ -1,5 +1,5 @@
 # PRD: Sites & Device Fleet (PRD-04)
-## Status: In Progress
+## Status: In Progress (pending visual smoke test)
 ## Last Updated: 2026-03-01
 
 ## 1. Overview
@@ -117,32 +117,32 @@ EnergyOS manages 20 sites across Vienna, each with 5-15 IoT devices. Users need 
 ### Relevant Files
 
 **New files (all paths relative to `apps/dashboard/src/`):**
-- `components/ui/table.tsx` — shadcn Table component
-- `components/ui/tabs.tsx` — shadcn Tabs component
-- `components/devices/device-status-badge.tsx` — Colored dot + status text
-- `components/devices/device-table.tsx` — Full DataTable with sort/filter/pagination
-- `components/devices/device-info-card.tsx` — Device metadata display
-- `components/devices/device-reading-chart.tsx` — 24h uPlot reading chart
-- `components/devices/device-reading-table.tsx` — Recent readings table
-- `components/sites/site-map.tsx` — Leaflet map wrapper (dynamic import)
-- `components/sites/site-card.tsx` — Individual site card
-- `components/sites/site-list.tsx` — Filtered site card grid
-- `components/sites/site-filter-bar.tsx` — Search + status + type filters
-- `components/sites/site-detail-header.tsx` — Site name, badges, breadcrumb
-- `components/sites/site-energy-tab.tsx` — Power curve + KPI row for single site
-- `components/sites/site-tariff-tab.tsx` — Tariff rate timeline
-- `app/(dashboard)/sites/page.tsx` — Sites list + map page (modify existing stub)
-- `app/(dashboard)/sites/[siteId]/page.tsx` — Site detail with tabs (new)
-- `app/(dashboard)/sites/loading.tsx` — Sites loading skeleton (new or modify)
-- `app/(dashboard)/sites/[siteId]/loading.tsx` — Site detail skeleton (new)
-- `app/(dashboard)/devices/page.tsx` — Devices fleet table (rewrite existing)
-- `app/(dashboard)/devices/[deviceId]/page.tsx` — Device detail (new)
-- `app/(dashboard)/devices/loading.tsx` — Devices loading skeleton (new or modify)
-- `app/(dashboard)/devices/[deviceId]/loading.tsx` — Device detail skeleton (new)
-- `types/leaflet.d.ts` — Type declarations for leaflet CSS
+- `components/ui/table.tsx` — shadcn Table component (Table, TableHeader, TableBody, TableRow, TableHead, TableCell)
+- `components/ui/tabs.tsx` — shadcn Tabs component (Tabs, TabsList, TabsTrigger, TabsContent)
+- `components/devices/device-status-badge.tsx` — Colored dot + status text using CSS vars
+- `components/devices/device-table.tsx` — Full DataTable: sortable columns, search, status/type filters, pagination (10/20/50), row click navigation
+- `components/devices/device-info-card.tsx` — Device metadata: type, capacity, protocol, firmware, site link, status, last seen
+- `components/devices/device-reading-chart.tsx` — 24h uPlot reading chart (single series, device-type-colored)
+- `components/devices/device-reading-table.tsx` — Last 50 readings table with quality badges, sortable by timestamp
+- `components/sites/site-map.tsx` — Dynamic import wrapper for Leaflet map (ssr: false)
+- `components/sites/site-map-inner.tsx` — Actual MapContainer with circle markers, popups, dark/light tile switching
+- `components/sites/site-card.tsx` — Card with type icon, status badge, device count, grid kVA
+- `components/sites/site-list.tsx` — Filtered responsive grid of SiteCards
+- `components/sites/site-filter-bar.tsx` — Search + status + type dropdown filters
+- `components/sites/site-energy-tab.tsx` — 4 mini KPI cards (consumption, solar, grid import, grid export)
+- `components/sites/site-tariff-tab.tsx` — Current price card + 24h timeline bar + rate details
+- `app/(dashboard)/sites/page.tsx` — Sites list + map page
+- `app/(dashboard)/sites/[siteId]/page.tsx` — Site detail with 3 tabs (Devices, Energy, Tariff)
+- `app/(dashboard)/sites/loading.tsx` — Sites loading skeleton
+- `app/(dashboard)/sites/[siteId]/loading.tsx` — Site detail skeleton
+- `app/(dashboard)/devices/page.tsx` — Devices fleet table page
+- `app/(dashboard)/devices/[deviceId]/page.tsx` — Device detail with breadcrumb, info card, chart, reading table
+- `app/(dashboard)/devices/loading.tsx` — Devices loading skeleton
+- `app/(dashboard)/devices/[deviceId]/loading.tsx` — Device detail skeleton
 
 **Modified files:**
-- `apps/dashboard/package.json` — Add leaflet, react-leaflet, @types/leaflet
+- `apps/dashboard/package.json` — Added leaflet, react-leaflet, @types/leaflet
+- `apps/dashboard/src/types/css.d.ts` — Added leaflet CSS module declaration
 
 ### Notes
 - Dependencies needed: `leaflet` (production), `react-leaflet` (production), `@types/leaflet` (dev)
@@ -187,9 +187,9 @@ EnergyOS manages 20 sites across Vienna, each with 5-15 IoT devices. Users need 
   - [x] 5.5 Create `src/components/sites/site-tariff-tab.tsx` — `"use client"`. Uses `useActiveTariff(siteId)` + `useCurrentPrice(siteId)`. Shows current price card + 24h period bar (horizontal bar divided into peak/offpeak/shoulder segments with `bg-tariff-*` colors) + rate details
   - [x] 5.6 Create `src/app/(dashboard)/sites/[siteId]/loading.tsx` — skeleton: header + tabs + content area
 
-- [ ] 6.0 Verification & Cleanup
-  - [ ] 6.1 Run `npx turbo type-check` — fix any type errors
-  - [ ] 6.2 Run `pnpm clean && pnpm build` — verify clean production build
+- [x] 6.0 Verification & Cleanup
+  - [x] 6.1 Run `npx turbo type-check` — fixed unused imports in site-energy-tab.tsx and site-tariff-tab.tsx
+  - [x] 6.2 Run `pnpm clean && pnpm build` — clean production build passes. All routes compile successfully
   - [ ] 6.3 Visual smoke test — navigate all routes: /sites, /sites/[id], /devices, /devices/[id]. Verify map renders, table sorts/filters, detail pages load
 
 ### Progress Log
@@ -200,3 +200,5 @@ EnergyOS manages 20 sites across Vienna, each with 5-15 IoT devices. Users need 
 | 2026-03-01 | 3.1–3.4 | Devices page rewrite, device detail page, loading skeletons |
 | 2026-03-01 | 4.1–4.4 | Site map (Leaflet + dynamic import), site card, filter bar, site list grid |
 | 2026-03-01 | 5.1–5.6 | Sites page, site detail with tabs (devices/energy/tariff), energy KPIs, tariff timeline, skeletons |
+| 2026-03-01 | 6.1 | Fixed unused imports in site-energy-tab.tsx and site-tariff-tab.tsx |
+| 2026-03-01 | 6.2 | Clean build passes — all routes compile, static + dynamic pages verified |

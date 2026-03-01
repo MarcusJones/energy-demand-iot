@@ -4,7 +4,6 @@ import { useActiveTariff, useCurrentPrice } from "@/hooks/use-tariffs";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { AlertCircle } from "lucide-react";
 import type { TariffPeriod, RateType } from "@/schemas/tariff";
 
 const RATE_TYPE_LABELS: Record<RateType, string> = {
