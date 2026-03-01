@@ -36,7 +36,6 @@ export function EnergyFlowSankey() {
       series: [
         {
           type: "sankey",
-          layout: "none",
           emphasis: { focus: "adjacency" },
           nodeAlign: "justify",
           orient: "horizontal",

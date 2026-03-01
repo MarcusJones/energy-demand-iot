@@ -36,16 +36,22 @@ export function UPlotWrapper({
     const el = containerRef.current;
     if (!el) return;
 
+    // Guard: data must be a non-empty array with at least timestamps
+    if (!data || data.length === 0 || !data[0] || data[0].length === 0) return;
+
     // Dynamic import to avoid SSR issues
     if (!uPlotRef.current) {
       const mod = await import("uplot");
       uPlotRef.current = mod.default;
-      // Import uPlot CSS
       await import("uplot/dist/uPlot.min.css");
     }
 
     const UPlot = uPlotRef.current;
     const rect = el.getBoundingClientRect();
+    const width = Math.floor(rect.width);
+
+    // Don't create chart if container has no width yet
+    if (width <= 0) return;
 
     // Destroy previous instance
     if (chartRef.current) {
@@ -55,7 +61,7 @@ export function UPlotWrapper({
 
     const fullOpts: uPlot.Options = {
       ...options,
-      width: Math.floor(rect.width),
+      width,
       height,
     };
 
@@ -76,7 +82,7 @@ export function UPlotWrapper({
 
   // Update data without recreating
   useEffect(() => {
-    if (chartRef.current) {
+    if (chartRef.current && data && data.length > 0 && data[0]?.length > 0) {
       chartRef.current.setData(data);
     }
   }, [data]);

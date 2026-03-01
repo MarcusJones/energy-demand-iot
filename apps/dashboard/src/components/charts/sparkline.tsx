@@ -29,7 +29,7 @@ export function Sparkline({
 
   const createChart = useCallback(async () => {
     const el = containerRef.current;
-    if (!el || data.length === 0) return;
+    if (!el || !data || data.length === 0) return;
 
     if (!uPlotRef.current) {
       const mod = await import("uplot");
