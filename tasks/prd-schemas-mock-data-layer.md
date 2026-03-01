@@ -218,11 +218,11 @@ N/A — this PRD is purely data layer, no UI work.
   - [x] 7.6 Create `src/hooks/use-tariffs.ts` — `useActiveTariff(siteId)`, `useSiteTariffs(siteId)`, `useCurrentPrice(siteId)`
   - [x] 7.7 Create `src/hooks/use-dr-events.ts` — `useDREvents(params?)`, `useDREvent(id)`, `useActiveDREvents()`, `useSiteDREvents(siteId)`
 
-- [ ] 8.0 MSW Setup & Instrumentation
-  - [ ] 8.1 Create `src/mocks/handlers.ts` — MSW v2 `http.get()`/`http.post()` handlers for all `/api/*` endpoints. Each handler calls the corresponding mock repository and returns JSON
-  - [ ] 8.2 Create `src/mocks/server.ts` — `setupServer(...handlers)` for Node/SSR environment
-  - [ ] 8.3 Create `src/mocks/browser.ts` — `setupWorker(...handlers)` for browser environment
-  - [ ] 8.4 Create `src/instrumentation.ts` — Next.js instrumentation hook. Conditionally imports and starts MSW server when `NEXT_PUBLIC_USE_MOCK=true`
+- [x] 8.0 MSW Setup & Instrumentation
+  - [x] 8.1 Create `src/mocks/handlers.ts` — MSW v2 `http.get()`/`http.post()` handlers for all `/api/*` endpoints. Each handler calls the corresponding mock repository and returns JSON
+  - [x] 8.2 Create `src/mocks/server.ts` — `setupServer(...handlers)` for Node/SSR environment
+  - [x] 8.3 Create `src/mocks/browser.ts` — `setupWorker(...handlers)` for browser environment
+  - [x] 8.4 Create `src/instrumentation.ts` — Next.js instrumentation hook. Conditionally imports and starts MSW server when `NEXT_PUBLIC_USE_MOCK=true`
 
 - [ ] 9.0 Verification & Cleanup
   - [ ] 9.1 Wire `useDevices()` into `src/app/(dashboard)/devices/page.tsx` — display device count and first device name to verify data flows end-to-end
@@ -241,3 +241,4 @@ N/A — this PRD is purely data layer, no UI work.
 | 2026-03-01 | 5.1-5.7 | All 7 mock repository implementations (site, device, reading, forecast, schedule, tariff, dr-event) |
 | 2026-03-01 | 6.1 | Factory with dynamic import() for all 7 repos |
 | 2026-03-01 | 7.1-7.7 | All 7 TanStack Query hook files (sites, devices, readings, forecasts, schedules, tariffs, dr-events) |
+| 2026-03-01 | 8.1-8.4 | MSW handlers, server, browser, instrumentation.ts |
