@@ -191,11 +191,11 @@ N/A — this PRD is purely data layer, no UI work.
   - [x] 3.7 Create `src/repositories/interfaces/ITariffRepository.ts` — interface with `getActive()`, `getForSite()`, `getCurrentPrice()`
   - [x] 3.8 Create `src/repositories/interfaces/IDREventRepository.ts` — `DREventListParams extends ListParams`, interface with `list()`, `getById()`, `getActive()`, `getForSite()`
 
-- [ ] 4.0 Mock Data Seed & Generators
-  - [ ] 4.1 Create `src/repositories/mock/data/seed.ts` — `faker.seed(42)`, export constants: `NUM_SITES=20`, `DATE_RANGE_DAYS=30`, `READING_INTERVAL_MIN=15`, `NOW` (fixed reference date), Vienna coordinate bounds
-  - [ ] 4.2 Create `src/repositories/mock/data/generators.ts` — implement all 6 generator functions: `generateConsumptionCurve()`, `generateSolarCurve()`, `generateBatterySoC()`, `generateWeatherData()`, `generateForecast()`, `generatePriceSignal()`
-  - [ ] 4.3 Create `src/repositories/mock/data/sites.ts` — generate 20 sites using faker + Vienna coordinates. 12 residential, 6 commercial, 2 industrial. Deterministic names/addresses
-  - [ ] 4.4 Create `src/repositories/mock/data/devices.ts` — generate ~200 devices distributed by site type. Solar + smart meter on all, battery on 40%, EV charger on 30%, heat pump on residential. Apply status distribution (90/5/3/2)
+- [x] 4.0 Mock Data Seed & Generators
+  - [x] 4.1 Create `src/repositories/mock/data/seed.ts` — `faker.seed(42)`, export constants: `NUM_SITES=20`, `DATE_RANGE_DAYS=30`, `READING_INTERVAL_MIN=15`, `NOW` (fixed reference date), Vienna coordinate bounds
+  - [x] 4.2 Create `src/repositories/mock/data/generators.ts` — implement all 6 generator functions: `generateConsumptionCurve()`, `generateSolarCurve()`, `generateBatterySoC()`, `generateWeatherData()`, `generateForecast()`, `generatePriceSignal()`
+  - [x] 4.3 Create `src/repositories/mock/data/sites.ts` — generate 20 sites using faker + Vienna coordinates. 12 residential, 6 commercial, 2 industrial. Deterministic names/addresses
+  - [x] 4.4 Create `src/repositories/mock/data/devices.ts` — generate ~200 devices distributed by site type. Solar + smart meter on all, battery on 40%, EV charger on 30%, heat pump on residential. Apply status distribution (90/5/3/2)
 
 - [ ] 5.0 Mock Repository Implementations
   - [ ] 5.1 Create `src/repositories/mock/MockSiteRepository.ts` — implements `ISiteRepository`. Singleton. Filters by status/search, paginates, sorts. `getSummary()` aggregates device counts + energy from readings
@@ -237,3 +237,4 @@ N/A — this PRD is purely data layer, no UI work.
 | 2026-03-01 | 1.2 | Created src/lib/env.ts with Zod-validated env |
 | 2026-03-01 | 2.1-2.7 | All 7 Zod schemas created (site, device, reading, tariff, schedule, forecast, dr-event) |
 | 2026-03-01 | 3.1-3.8 | All 8 repository interface files created (common, site, device, reading, forecast, schedule, tariff, dr-event) |
+| 2026-03-01 | 4.1-4.4 | Seed, 6 generators, 20 sites, ~200 devices created |
