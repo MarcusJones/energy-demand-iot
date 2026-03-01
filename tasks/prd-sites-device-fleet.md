@@ -167,11 +167,11 @@ EnergyOS manages 20 sites across Vienna, each with 5-15 IoT devices. Users need 
   - [x] 2.4 Create `src/components/devices/device-reading-chart.tsx` — `"use client"` component. Uses `useReadingRange(deviceId, from, to, "15min")` for last 24h. Renders single-series power_w line via UPlotWrapper. Loading skeleton and error state
   - [x] 2.5 Create `src/components/devices/device-reading-table.tsx` — Table showing last 50 readings. Columns: Timestamp (formatted), Power (W), Energy (kWh), Voltage (V), SoC (% if battery, else —), Quality badge. Sortable by timestamp
 
-- [ ] 3.0 Devices Pages
-  - [ ] 3.1 Rewrite `src/app/(dashboard)/devices/page.tsx` — replace current stub with DeviceTable component. Page title + description header
-  - [ ] 3.2 Create `src/app/(dashboard)/devices/[deviceId]/page.tsx` — `"use client"` page. Uses `useParams()` + `useDevice(id)`. Renders breadcrumb, DeviceInfoCard, DeviceReadingChart, DeviceReadingTable. 404 handling if device not found
-  - [ ] 3.3 Create `src/app/(dashboard)/devices/loading.tsx` — skeleton: search bar + table rows
-  - [ ] 3.4 Create `src/app/(dashboard)/devices/[deviceId]/loading.tsx` — skeleton: info card + chart + table
+- [x] 3.0 Devices Pages
+  - [x] 3.1 Rewrite `src/app/(dashboard)/devices/page.tsx` — replace current stub with DeviceTable component. Page title + description header
+  - [x] 3.2 Create `src/app/(dashboard)/devices/[deviceId]/page.tsx` — `"use client"` page. Uses `useParams()` + `useDevice(id)`. Renders breadcrumb, DeviceInfoCard, DeviceReadingChart, DeviceReadingTable. 404 handling if device not found
+  - [x] 3.3 Create `src/app/(dashboard)/devices/loading.tsx` — skeleton: search bar + table rows
+  - [x] 3.4 Create `src/app/(dashboard)/devices/[deviceId]/loading.tsx` — skeleton: info card + chart + table
 
 - [ ] 4.0 Site Map & List Components
   - [ ] 4.1 Create `src/components/sites/site-map.tsx` — Leaflet map wrapped in `"use client"` + loaded via `next/dynamic` with `ssr: false`. Centers on Vienna (48.2, 16.37), zoom 12. OpenStreetMap tiles (light) / CartoDB dark_all (dark mode). Circle markers per site colored by status. Click marker → popup with site name, type, "View Details" link. Props: `sites: Site[]`
@@ -197,3 +197,4 @@ EnergyOS manages 20 sites across Vienna, each with 5-15 IoT devices. Users need 
 |------|------|-------|
 | 2026-03-01 | 1.1–1.4 | Deps already installed, created shadcn Table + Tabs, added leaflet CSS type declaration |
 | 2026-03-01 | 2.1–2.5 | DeviceStatusBadge, DeviceTable, DeviceInfoCard, DeviceReadingChart, DeviceReadingTable |
+| 2026-03-01 | 3.1–3.4 | Devices page rewrite, device detail page, loading skeletons |
