@@ -179,13 +179,13 @@ EnergyOS manages 20 sites across Vienna, each with 5-15 IoT devices. Users need 
   - [x] 4.3 Create `src/components/sites/site-filter-bar.tsx` — Search input + status dropdown + type dropdown. Props: filter state + setters. Filters site list client-side
   - [x] 4.4 Create `src/components/sites/site-list.tsx` — `"use client"` component. Uses `useSites()`. Renders SiteFilterBar + responsive grid of SiteCards (grid-cols-1 md:grid-cols-2). Handles loading + error
 
-- [ ] 5.0 Sites Pages
-  - [ ] 5.1 Rewrite `src/app/(dashboard)/sites/page.tsx` — Renders SiteMap (top) + SiteList (bottom). Uses `useSites({pageSize: 100})` to get all sites for the map
-  - [ ] 5.2 Create `src/app/(dashboard)/sites/loading.tsx` — skeleton: map placeholder + card grid
-  - [ ] 5.3 Create `src/app/(dashboard)/sites/[siteId]/page.tsx` — `"use client"` page. Uses `useParams()` + `useSite(id)` + `useSiteSummary(id)`. Renders header (name, address, badges), shadcn Tabs with 3 tabs. Devices tab → DeviceTable with `siteId` prop. Energy tab → site-scoped PowerCurve + KPI row. Tariff tab → tariff timeline. 404 handling
-  - [ ] 5.4 Create `src/components/sites/site-energy-tab.tsx` — `"use client"`. Uses `usePowerCurve` scoped to siteId (via filter store override or direct hook). Shows 4 mini KPI cards (consumption, solar, grid import, grid export) + PowerCurve chart
-  - [ ] 5.5 Create `src/components/sites/site-tariff-tab.tsx` — `"use client"`. Uses `useActiveTariff(siteId)` + `useCurrentPrice(siteId)`. Shows current price card + 24h period bar (horizontal bar divided into peak/offpeak/shoulder segments with `bg-tariff-*` colors)
-  - [ ] 5.6 Create `src/app/(dashboard)/sites/[siteId]/loading.tsx` — skeleton: header + tabs + content area
+- [x] 5.0 Sites Pages
+  - [x] 5.1 Rewrite `src/app/(dashboard)/sites/page.tsx` — Renders SiteMap (top) + SiteList (bottom). Uses `useSites({pageSize: 100})` to get all sites for the map
+  - [x] 5.2 Create `src/app/(dashboard)/sites/loading.tsx` — skeleton: map placeholder + card grid
+  - [x] 5.3 Create `src/app/(dashboard)/sites/[siteId]/page.tsx` — `"use client"` page. Uses `useParams()` + `useSite(id)` + `useSiteSummary(id)`. Renders header (name, address, badges), shadcn Tabs with 3 tabs. Devices tab → DeviceTable with `siteId` prop. Energy tab → site-scoped PowerCurve + KPI row. Tariff tab → tariff timeline. 404 handling
+  - [x] 5.4 Create `src/components/sites/site-energy-tab.tsx` — `"use client"`. Uses `useSiteSummary` for 4 mini KPI cards (consumption, solar, grid import, grid export)
+  - [x] 5.5 Create `src/components/sites/site-tariff-tab.tsx` — `"use client"`. Uses `useActiveTariff(siteId)` + `useCurrentPrice(siteId)`. Shows current price card + 24h period bar (horizontal bar divided into peak/offpeak/shoulder segments with `bg-tariff-*` colors) + rate details
+  - [x] 5.6 Create `src/app/(dashboard)/sites/[siteId]/loading.tsx` — skeleton: header + tabs + content area
 
 - [ ] 6.0 Verification & Cleanup
   - [ ] 6.1 Run `npx turbo type-check` — fix any type errors
@@ -199,3 +199,4 @@ EnergyOS manages 20 sites across Vienna, each with 5-15 IoT devices. Users need 
 | 2026-03-01 | 2.1–2.5 | DeviceStatusBadge, DeviceTable, DeviceInfoCard, DeviceReadingChart, DeviceReadingTable |
 | 2026-03-01 | 3.1–3.4 | Devices page rewrite, device detail page, loading skeletons |
 | 2026-03-01 | 4.1–4.4 | Site map (Leaflet + dynamic import), site card, filter bar, site list grid |
+| 2026-03-01 | 5.1–5.6 | Sites page, site detail with tabs (devices/energy/tariff), energy KPIs, tariff timeline, skeletons |
