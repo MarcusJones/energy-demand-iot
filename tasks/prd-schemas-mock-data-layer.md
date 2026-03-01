@@ -206,8 +206,8 @@ N/A — this PRD is purely data layer, no UI work.
   - [x] 5.6 Create `src/repositories/mock/MockTariffRepository.ts` — implements `ITariffRepository`. 2-3 tariff structures (residential ToU, commercial flat, industrial demand). `getCurrentPrice()` maps current hour to period rate
   - [x] 5.7 Create `src/repositories/mock/MockDREventRepository.ts` — implements `IDREventRepository`. Pre-generates ~10 DR events (mix of statuses). `getActive()` filters by current time window
 
-- [ ] 6.0 Repository Factory
-  - [ ] 6.1 Create `src/repositories/factory.ts` — one `get[Entity]Repository()` async function per entity. Checks `NEXT_PUBLIC_USE_MOCK` env var. Uses dynamic `import()` for mock implementations. Returns singleton instances. Throws descriptive error if real repo requested but not yet implemented
+- [x] 6.0 Repository Factory
+  - [x] 6.1 Create `src/repositories/factory.ts` — one `get[Entity]Repository()` async function per entity. Checks `NEXT_PUBLIC_USE_MOCK` env var. Uses dynamic `import()` for mock implementations. Returns singleton instances. Throws descriptive error if real repo requested but not yet implemented
 
 - [ ] 7.0 TanStack Query Hooks
   - [ ] 7.1 Create `src/hooks/use-sites.ts` — `useSites(params?)`, `useSite(id)`, `useSiteSummary(id)`. Dynamic import of factory in queryFn
@@ -239,3 +239,4 @@ N/A — this PRD is purely data layer, no UI work.
 | 2026-03-01 | 3.1-3.8 | All 8 repository interface files created (common, site, device, reading, forecast, schedule, tariff, dr-event) |
 | 2026-03-01 | 4.1-4.4 | Seed, 6 generators, 20 sites, ~200 devices created |
 | 2026-03-01 | 5.1-5.7 | All 7 mock repository implementations (site, device, reading, forecast, schedule, tariff, dr-event) |
+| 2026-03-01 | 6.1 | Factory with dynamic import() for all 7 repos |
