@@ -209,14 +209,14 @@ N/A — this PRD is purely data layer, no UI work.
 - [x] 6.0 Repository Factory
   - [x] 6.1 Create `src/repositories/factory.ts` — one `get[Entity]Repository()` async function per entity. Checks `NEXT_PUBLIC_USE_MOCK` env var. Uses dynamic `import()` for mock implementations. Returns singleton instances. Throws descriptive error if real repo requested but not yet implemented
 
-- [ ] 7.0 TanStack Query Hooks
-  - [ ] 7.1 Create `src/hooks/use-sites.ts` — `useSites(params?)`, `useSite(id)`, `useSiteSummary(id)`. Dynamic import of factory in queryFn
-  - [ ] 7.2 Create `src/hooks/use-devices.ts` — `useDevices(params?)`, `useDevice(id)`, `useDeviceCountsByStatus(siteId?)`, `useDeviceCountsByType(siteId?)`
-  - [ ] 7.3 Create `src/hooks/use-readings.ts` — `useLatestReading(deviceId)`, `useReadingRange(deviceId, from, to, resolution)`, `useAggregateReadings(siteId, from, to)`, `useDailyTotals(siteId, days)`
-  - [ ] 7.4 Create `src/hooks/use-forecasts.ts` — `useLatestForecast(siteId, type)`, `useForecastHorizon(siteId, type, hours)`, `useForecastVsActual(siteId, type, from, to)`
-  - [ ] 7.5 Create `src/hooks/use-schedules.ts` — `useSchedules(params?)`, `useDeviceSchedules(deviceId)`, `useScheduleRange(from, to)`, `useCreateSchedule()`, `useCancelSchedule()`
-  - [ ] 7.6 Create `src/hooks/use-tariffs.ts` — `useActiveTariff(siteId)`, `useSiteTariffs(siteId)`, `useCurrentPrice(siteId)`
-  - [ ] 7.7 Create `src/hooks/use-dr-events.ts` — `useDREvents(params?)`, `useDREvent(id)`, `useActiveDREvents()`, `useSiteDREvents(siteId)`
+- [x] 7.0 TanStack Query Hooks
+  - [x] 7.1 Create `src/hooks/use-sites.ts` — `useSites(params?)`, `useSite(id)`, `useSiteSummary(id)`. Dynamic import of factory in queryFn
+  - [x] 7.2 Create `src/hooks/use-devices.ts` — `useDevices(params?)`, `useDevice(id)`, `useDeviceCountsByStatus(siteId?)`, `useDeviceCountsByType(siteId?)`
+  - [x] 7.3 Create `src/hooks/use-readings.ts` — `useLatestReading(deviceId)`, `useReadingRange(deviceId, from, to, resolution)`, `useAggregateReadings(siteId, from, to)`, `useDailyTotals(siteId, days)`
+  - [x] 7.4 Create `src/hooks/use-forecasts.ts` — `useLatestForecast(siteId, type)`, `useForecastHorizon(siteId, type, hours)`, `useForecastVsActual(siteId, type, from, to)`
+  - [x] 7.5 Create `src/hooks/use-schedules.ts` — `useSchedules(params?)`, `useDeviceSchedules(deviceId)`, `useScheduleRange(from, to)`, `useCreateSchedule()`, `useCancelSchedule()`
+  - [x] 7.6 Create `src/hooks/use-tariffs.ts` — `useActiveTariff(siteId)`, `useSiteTariffs(siteId)`, `useCurrentPrice(siteId)`
+  - [x] 7.7 Create `src/hooks/use-dr-events.ts` — `useDREvents(params?)`, `useDREvent(id)`, `useActiveDREvents()`, `useSiteDREvents(siteId)`
 
 - [ ] 8.0 MSW Setup & Instrumentation
   - [ ] 8.1 Create `src/mocks/handlers.ts` — MSW v2 `http.get()`/`http.post()` handlers for all `/api/*` endpoints. Each handler calls the corresponding mock repository and returns JSON
@@ -240,3 +240,4 @@ N/A — this PRD is purely data layer, no UI work.
 | 2026-03-01 | 4.1-4.4 | Seed, 6 generators, 20 sites, ~200 devices created |
 | 2026-03-01 | 5.1-5.7 | All 7 mock repository implementations (site, device, reading, forecast, schedule, tariff, dr-event) |
 | 2026-03-01 | 6.1 | Factory with dynamic import() for all 7 repos |
+| 2026-03-01 | 7.1-7.7 | All 7 TanStack Query hook files (sites, devices, readings, forecasts, schedules, tariffs, dr-events) |
