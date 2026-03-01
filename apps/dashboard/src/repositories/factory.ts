@@ -14,7 +14,7 @@ import type { IScheduleRepository } from "./interfaces/IScheduleRepository";
 import type { ITariffRepository } from "./interfaces/ITariffRepository";
 import type { IDREventRepository } from "./interfaces/IDREventRepository";
 
-function useMock(): boolean {
+function isMockMode(): boolean {
   return process.env.NEXT_PUBLIC_USE_MOCK !== "false";
 }
 
@@ -26,7 +26,7 @@ function notImplemented(name: string): never {
 }
 
 export async function getSiteRepository(): Promise<ISiteRepository> {
-  if (useMock()) {
+  if (isMockMode()) {
     const { getMockSiteRepository } = await import(
       "./mock/MockSiteRepository"
     );
@@ -36,7 +36,7 @@ export async function getSiteRepository(): Promise<ISiteRepository> {
 }
 
 export async function getDeviceRepository(): Promise<IDeviceRepository> {
-  if (useMock()) {
+  if (isMockMode()) {
     const { getMockDeviceRepository } = await import(
       "./mock/MockDeviceRepository"
     );
@@ -46,7 +46,7 @@ export async function getDeviceRepository(): Promise<IDeviceRepository> {
 }
 
 export async function getReadingRepository(): Promise<IReadingRepository> {
-  if (useMock()) {
+  if (isMockMode()) {
     const { getMockReadingRepository } = await import(
       "./mock/MockReadingRepository"
     );
@@ -56,7 +56,7 @@ export async function getReadingRepository(): Promise<IReadingRepository> {
 }
 
 export async function getForecastRepository(): Promise<IForecastRepository> {
-  if (useMock()) {
+  if (isMockMode()) {
     const { getMockForecastRepository } = await import(
       "./mock/MockForecastRepository"
     );
@@ -66,7 +66,7 @@ export async function getForecastRepository(): Promise<IForecastRepository> {
 }
 
 export async function getScheduleRepository(): Promise<IScheduleRepository> {
-  if (useMock()) {
+  if (isMockMode()) {
     const { getMockScheduleRepository } = await import(
       "./mock/MockScheduleRepository"
     );
@@ -76,7 +76,7 @@ export async function getScheduleRepository(): Promise<IScheduleRepository> {
 }
 
 export async function getTariffRepository(): Promise<ITariffRepository> {
-  if (useMock()) {
+  if (isMockMode()) {
     const { getMockTariffRepository } = await import(
       "./mock/MockTariffRepository"
     );
@@ -86,7 +86,7 @@ export async function getTariffRepository(): Promise<ITariffRepository> {
 }
 
 export async function getDREventRepository(): Promise<IDREventRepository> {
-  if (useMock()) {
+  if (isMockMode()) {
     const { getMockDREventRepository } = await import(
       "./mock/MockDREventRepository"
     );
