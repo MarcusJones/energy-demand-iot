@@ -74,6 +74,8 @@ function getGridConnectionKva(type: SiteType): number {
       return faker.helpers.arrayElement([100, 150, 250]);
     case "industrial":
       return faker.helpers.arrayElement([500, 1000, 2000]);
+    default:
+      return 50;
   }
 }
 

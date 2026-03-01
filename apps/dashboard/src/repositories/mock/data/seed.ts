@@ -33,20 +33,22 @@ export const DEVICE_STATUS_WEIGHTS = {
 } as const;
 
 // ── Energy constants ───────────────────────────────────────
-export const BASE_LOAD_KW = {
+import type { SiteType } from "@/schemas/site";
+
+export const BASE_LOAD_KW: Record<SiteType, number> = {
   residential: 1.2,
   commercial: 15,
   industrial: 80,
-} as const;
+};
 
-export const SOLAR_CAPACITY_KW = {
+export const SOLAR_CAPACITY_KW: Record<SiteType, number> = {
   residential: 8,
   commercial: 50,
   industrial: 200,
-} as const;
+};
 
-export const BATTERY_CAPACITY_KWH = {
+export const BATTERY_CAPACITY_KWH: Record<SiteType, number> = {
   residential: 10,
   commercial: 100,
   industrial: 500,
-} as const;
+};

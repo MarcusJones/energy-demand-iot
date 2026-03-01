@@ -1,4 +1,5 @@
 import type { Reading, AggregatedReading, DailyTotal, ReadingResolution } from "@/schemas/reading";
+import type { SiteType } from "@/schemas/site";
 import type { IReadingRepository } from "@/repositories/interfaces/IReadingRepository";
 import { mockDevices } from "./data/devices";
 import { mockSites } from "./data/sites";
@@ -31,11 +32,11 @@ function fractionalHour(d: Date): number {
 }
 
 /** Look up site type for a device */
-function getSiteTypeForDevice(deviceId: string) {
+function getSiteTypeForDevice(deviceId: string): SiteType {
   const device = mockDevices.find((d) => d.id === deviceId);
-  if (!device) return "residential" as const;
+  if (!device) return "residential";
   const site = mockSites.find((s) => s.id === device.site_id);
-  return site?.type ?? ("residential" as const);
+  return site?.type ?? "residential";
 }
 
 /** Generate a single reading for a device at a timestamp */
@@ -160,7 +161,7 @@ export class MockReadingRepository implements IReadingRepository {
   ): Promise<AggregatedReading> {
     const siteDevices = mockDevices.filter((d) => d.site_id === siteId);
     const site = mockSites.find((s) => s.id === siteId);
-    const siteType = site?.type ?? "residential";
+    const siteType: SiteType = site?.type ?? "residential";
 
     const baseLoad = BASE_LOAD_KW[siteType];
     const solarCap = SOLAR_CAPACITY_KW[siteType];
@@ -225,7 +226,7 @@ export class MockReadingRepository implements IReadingRepository {
   async getDailyTotals(siteId: string, days: number): Promise<DailyTotal[]> {
     const totals: DailyTotal[] = [];
     const site = mockSites.find((s) => s.id === siteId);
-    const siteType = site?.type ?? "residential";
+    const siteType: SiteType = site?.type ?? "residential";
 
     const baseLoad = BASE_LOAD_KW[siteType];
     const solarCap = SOLAR_CAPACITY_KW[siteType];

@@ -5,7 +5,7 @@ const envSchema = z.object({
   NEXT_PUBLIC_USE_MOCK: z
     .enum(["true", "false"])
     .default("true")
-    .transform((v) => v === "true"),
+    .transform((v: string) => v === "true"),
 
   /** Controls stage badge in header */
   NEXT_PUBLIC_APP_STAGE: z

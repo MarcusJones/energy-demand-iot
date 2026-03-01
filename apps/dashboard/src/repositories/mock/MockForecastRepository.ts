@@ -1,4 +1,5 @@
 import type { Forecast, ForecastType } from "@/schemas/forecast";
+import type { SiteType } from "@/schemas/site";
 import type {
   IForecastRepository,
   ForecastComparison,
@@ -29,7 +30,7 @@ function buildForecast(
   horizonHours: number
 ): Forecast {
   const site = mockSites.find((s) => s.id === siteId);
-  const siteType = site?.type ?? "residential";
+  const siteType: SiteType = site?.type ?? "residential";
   const baseLoad = BASE_LOAD_KW[siteType];
   const solarCap = SOLAR_CAPACITY_KW[siteType];
   const seed = siteId.charCodeAt(0) + type.charCodeAt(0);
@@ -41,20 +42,16 @@ function buildForecast(
     const hour = fractionalHour(t);
     const doy = dayOfYear(t);
 
-    let baseValue: number;
-    switch (type) {
-      case "solar":
-        baseValue = generateSolarCurve(hour, doy, solarCap);
-        break;
-      case "consumption":
-        baseValue = generateConsumptionCurve(hour, baseLoad, doy);
-        break;
-      case "price":
-        baseValue = generatePriceSignal(
-          Math.floor(hour),
-          t.getDay() === 0 || t.getDay() === 6
-        ).price_per_kwh;
-        break;
+    let baseValue: number = 0;
+    if (type === "solar") {
+      baseValue = generateSolarCurve(hour, doy, solarCap);
+    } else if (type === "consumption") {
+      baseValue = generateConsumptionCurve(hour, baseLoad, doy);
+    } else {
+      baseValue = generatePriceSignal(
+        Math.floor(hour),
+        t.getDay() === 0 || t.getDay() === 6
+      ).price_per_kwh;
     }
 
     const forecast = generateForecast(baseValue, h, seed);
@@ -121,20 +118,16 @@ export class MockForecastRepository implements IForecastRepository {
       const hour = fractionalHour(t);
       const doy = dayOfYear(t);
 
-      let value: number;
-      switch (type) {
-        case "solar":
-          value = generateSolarCurve(hour, doy, solarCap);
-          break;
-        case "consumption":
-          value = generateConsumptionCurve(hour, baseLoad, doy);
-          break;
-        case "price":
-          value = generatePriceSignal(
-            Math.floor(hour),
-            t.getDay() === 0 || t.getDay() === 6
-          ).price_per_kwh;
-          break;
+      let value: number = 0;
+      if (type === "solar") {
+        value = generateSolarCurve(hour, doy, solarCap);
+      } else if (type === "consumption") {
+        value = generateConsumptionCurve(hour, baseLoad, doy);
+      } else {
+        value = generatePriceSignal(
+          Math.floor(hour),
+          t.getDay() === 0 || t.getDay() === 6
+        ).price_per_kwh;
       }
 
       actuals.push({

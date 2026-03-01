@@ -225,10 +225,10 @@ N/A — this PRD is purely data layer, no UI work.
   - [x] 8.4 Create `src/instrumentation.ts` — Next.js instrumentation hook. Conditionally imports and starts MSW server when `NEXT_PUBLIC_USE_MOCK=true`
 
 - [ ] 9.0 Verification & Cleanup
-  - [ ] 9.1 Wire `useDevices()` into `src/app/(dashboard)/devices/page.tsx` — display device count and first device name to verify data flows end-to-end
-  - [ ] 9.2 Run `pnpm typecheck` — fix any type errors across all new files
-  - [ ] 9.3 Run `pnpm build` — verify no unused imports, clean production build
-  - [ ] 9.4 Verify determinism — reload page twice, confirm same device names/counts appear
+  - [x] 9.1 Wire `useDevices()` into `src/app/(dashboard)/devices/page.tsx` — display device count and first device name to verify data flows end-to-end
+  - [x] 9.2 Run `pnpm typecheck` — fix any type errors across all new files (remaining errors are all "Cannot find module" — resolved by `pnpm install`)
+  - [ ] 9.3 Run `pnpm build` — verify no unused imports, clean production build — ⚠️ BLOCKED: needs `pnpm install` first
+  - [ ] 9.4 Verify determinism — reload page twice, confirm same device names/counts appear — ⚠️ BLOCKED: needs `pnpm install` first
 
 ### Progress Log
 | Date | Task | Notes |
@@ -242,3 +242,5 @@ N/A — this PRD is purely data layer, no UI work.
 | 2026-03-01 | 6.1 | Factory with dynamic import() for all 7 repos |
 | 2026-03-01 | 7.1-7.7 | All 7 TanStack Query hook files (sites, devices, readings, forecasts, schedules, tariffs, dr-events) |
 | 2026-03-01 | 8.1-8.4 | MSW handlers, server, browser, instrumentation.ts |
+| 2026-03-01 | 9.1 | Wired useDevices() into devices page with status counts |
+| 2026-03-01 | 9.2 | Fixed all code type errors; remaining are missing module errors (need pnpm install) |
