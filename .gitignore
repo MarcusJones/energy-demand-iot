@@ -1,3 +1,6 @@
+.claude
+.devcontainer/
+
 # Dependencies
 node_modules/
 .claude/

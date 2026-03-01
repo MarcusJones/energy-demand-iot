@@ -104,10 +104,11 @@ Establish the foundational shell for the EnergyOS dashboard — a persistent sid
 - `apps/dashboard/src/app/(dashboard)/settings/page.tsx` — Settings stub
 
 ### Notes
-- **Install command (tell user to run):** `pnpm install` from repo root after all `package.json` files are created
-- **shadcn init (tell user to run):** `cd apps/dashboard && pnpm dlx shadcn@latest init` — choose New York, Neutral, CSS variables yes
-- **Add shadcn components (tell user to run):** `cd apps/dashboard && pnpm dlx shadcn@latest add sidebar skeleton button badge separator tooltip breadcrumb`
-- **Dev server (tell user to run):** `pnpm --filter @app/dashboard dev` — starts on port 4500
+- **`pnpm install` is automatic** — `.devcontainer/devcontainer.json` has `"postCreateCommand": "pnpm install"`. Rebuilding the container installs all deps. No manual step needed.
+- **shadcn is a one-time source-file generator** — `shadcn init` and `shadcn add` write files into `src/`. Run them once, commit the output, and the container never needs to run them again. They are NOT suitable for `postCreateCommand` because re-running them on rebuild would overwrite committed customisations.
+- **shadcn init (run once after first container build):** `cd apps/dashboard && pnpm dlx shadcn@latest init --yes --style new-york --base-color neutral --css-variables` — then commit the generated `components.json` and `src/lib/utils.ts`
+- **Add shadcn components (run once):** `cd apps/dashboard && pnpm dlx shadcn@latest add sidebar skeleton button badge separator tooltip breadcrumb` — then commit `src/components/ui/`
+- **Dev server:** `pnpm --filter @app/dashboard dev` — starts on port 4500 (forwarded by devcontainer)
 - **Type check:** `pnpm typecheck`
 - **Lint:** `pnpm lint`
 - `NEXT_PUBLIC_APP_STAGE=dev` must be set in `.env` for the stage badge to render
@@ -130,8 +131,8 @@ Establish the foundational shell for the EnergyOS dashboard — a persistent sid
   - [x] 3.1 Create `apps/dashboard/package.json` with name `@app/dashboard`, dev script `next dev --turbopack -p 4500`
   - [x] 3.2 Create `apps/dashboard/next.config.ts` with `output: "standalone"` and `turbopack: {}`
   - [x] 3.3 Create `apps/dashboard/tsconfig.json` with strict mode, path alias `@/*` → `./src/*`, bundler module resolution
-  - [x] 3.4 ⚠️ USER ACTION REQUIRED: Run `pnpm install` from repo root, then `cd apps/dashboard && pnpm dlx shadcn@latest init` (New York, Neutral, CSS variables yes)
-  - [x] 3.5 ⚠️ USER ACTION REQUIRED: Run `cd apps/dashboard && pnpm dlx shadcn@latest add sidebar skeleton button badge separator tooltip breadcrumb`
+  - [ ] 3.4 ⚠️ USER ACTION (once): After container build completes, run `cd apps/dashboard && pnpm dlx shadcn@latest init --yes --style new-york --base-color neutral --css-variables` — then commit generated `components.json` and `src/lib/utils.ts`
+  - [x] 3.5 ⚠️ USER ACTION (once): Run `cd apps/dashboard && pnpm dlx shadcn@latest add sidebar skeleton button badge separator tooltip breadcrumb` — then commit `src/components/ui/`
 
 - [x] 4.0 Set up global styles and design tokens
   - [x] 4.1 Created `globals.css` with Tailwind v4 `@import "tailwindcss"` + full OKLCH design token block (brand, semantic, energy domain, status, tariff, sidebar, `@theme inline` bridge, reduced-motion)
