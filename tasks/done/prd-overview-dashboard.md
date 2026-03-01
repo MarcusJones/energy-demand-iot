@@ -1,5 +1,5 @@
 # PRD: Overview Dashboard (PRD-03)
-## Status: In Progress
+## Status: Complete
 ## Last Updated: 2026-03-01
 
 ## 1. Overview
@@ -184,7 +184,7 @@ The Overview Dashboard is the landing page (`/`) of EnergyOS — the first thing
 - [x] 9.0 Verification & Cleanup
   - [x] 9.1 Run `pnpm typecheck` — fixed: removed unused var, added explicit Zustand annotations, removed invalid ECharts `layout` property, added CSS module declaration
   - [x] 9.2 Run `pnpm build` — clean build passes. Fixed: stale `.next` cache from Turbopack, added `clean` script, skipped MSW in production builds (`NODE_ENV !== "production"`), added uPlot data guards
-  - [ ] 9.3 Visual smoke test — verify page renders KPIs, Sankey, and Power Curve with mock data
+  - [x] 9.3 Visual smoke test — verified page renders KPIs, Sankey, and Power Curve with mock data
 
 ### Progress Log
 | Date | Task | Notes |
@@ -201,3 +201,5 @@ The Overview Dashboard is the landing page (`/`) of EnergyOS — the first thing
 | 2026-03-01 | — | Tasks 9.2, 9.3 blocked: user must run `pnpm install` to install uplot, echarts, zustand, date-fns |
 | 2026-03-01 | 9.1 | Fixed ECharts Sankey `layout` prop, added CSS module declaration, uPlot data guards |
 | 2026-03-01 | 9.2 | Build passes after cleaning stale .next cache + skipping MSW in prod + adding clean script |
+| 2026-03-01 | 9.3 | User confirmed visual smoke test passes — KPIs, Sankey, Power Curve all render correctly |
+| 2026-03-01 | — | All tasks complete. PRD-03 marked Complete. |

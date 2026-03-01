@@ -4,3 +4,4 @@ declare module "*.css" {
 }
 
 declare module "uplot/dist/uPlot.min.css";
+declare module "leaflet/dist/leaflet.css";
